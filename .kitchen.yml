@@ -1,0 +1,33 @@
+---
+driver:
+  name: docker
+  run_command: /sbin/init
+  privileged: true
+  use_sudo: false
+
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  require_chef_for_busser: false
+
+platforms:
+  - name: ubuntu
+    driver-config:
+      image: ubuntu:18.04
+  - name: centos
+    driver-config:
+      image: centos:7
+
+verifier:
+  name: serverspec
+
+suites:
+  - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/samodelkin/default.yml
+      additional_copy_path:
+        - "."
+    verifier:
+      patterns:
+        - tests/samodelkin/spec/samodelkin_spec.rb

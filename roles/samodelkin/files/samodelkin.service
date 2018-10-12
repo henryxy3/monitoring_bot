@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitorint bot
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/sbin
+ExecStart=/usr/bin/python /usr/local/sbin/samodelkin.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

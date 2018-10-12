@@ -1,0 +1,4 @@
+---
+conf_folder: "/etc/samodelkin"
+requirements:
+  - python-requests

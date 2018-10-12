@@ -78,7 +78,8 @@ class MonitoringBot(object):
                     self.chat_id, '{0} is broken. "{1}" not found {2} times '
                     'in the last minute, network error - {3} times'
                     .format(self.url, self.str_target,
-                    str(self.str_not_found), str(self.error_network)))
+                            str(self.str_not_found),
+                            str(self.error_network)))
             self.clear_variable()
             self.check_website()
 
@@ -92,7 +93,7 @@ if __name__ == '__main__':
     try:
         BOT = MonitoringBot(CONF['token'], CONF['chat_id'],
                             CONF['url'], CONF['str_target'])
-    except:
+    except EnvironmentError:
         print '[ERROR] variables not loaded'
         sys.stdout.flush()
     else:
